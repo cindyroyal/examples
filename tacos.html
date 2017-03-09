@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Random Things</title>
+</head>
+<body>
+<form  id="form1">
+
+<p>First Name: <input type="text" id="firstname" /></p>
+
+<p>Last Name: <input type="text" id="lastname" /></p>
+
+
+<p>How old are you?</p>
+<select id="age">
+ <option value="0">under 18</option>
+ <option value="18">18</option>
+ <option value="19">19</option>
+ <option value="20">20</option>
+ <option value="21">21</option>
+ <option value="22">22</option>
+ <option value="23">23</option>
+ <option value="24">24</option>
+ <option value="25">25</option>
+ <option value="26">26</option>
+ <option value="27">27</option>
+ <option value="28">28</option>
+ <option value="29">29</option>
+ <option value="30">30</option>
+ <option value="999">over 30</option>
+ </select>
+ 
+ 
+<p>How many tacos do you want?</p>
+<input type="radio" name="tacos" value="0" />0<br />
+<input type="radio" name="tacos" value="1" />1<br />
+<input type="radio" name="tacos" value="2" />2<br />
+<input type="radio" name="tacos" value="3" />3<br />
+<input type="radio" name="tacos" value="4" />4<br />
+
+
+<input type="submit" value="Submit">
+</form>
+
+<p>Welcome <span id="greeting"></span></p>
+<p>Your age is: <span id="userage"></span></p>
+<p>Year Born: <span id="year"></span></p>
+<p>Taco order: <span id="taconum"></span></p>
+<p>Taco subtotal <span id="tacosubtotal"></span></p>
+<p>Tax on Tacos: <span id="tax"><span></p>
+<p>Total for Tacos: <span id="tacototal"><span></p>
+
+<script>
+//this is the generic function that submits the form. Name of form above must be the same as id below
+document.getElementById("form1").onsubmit=function() {
+
+//code the answers here
+
+first = document.getElementById("firstname").value;
+last = document.getElementById("lastname").value;
+
+document.getElementById("greeting").innerHTML = first + " " + last;
+
+myage = document.getElementById("age").value;
+
+
+mytacos = document.querySelector('input[name= "tacos"]:checked').value;
+document.getElementById("taconum").innerHTML = mytacos;
+
+if(myage == 0) {
+document.getElementById("userage").innerHTML = "You are under 18";
+document.getElementById("year").innerHTML = "You were born after 1999";
+}
+
+else if(myage == 999) {
+document.getElementById("userage").innerHTML = "You are over 30";
+document.getElementById("year").innerHTML = "You were born before 1987";
+}
+
+else {
+yearborn = 2017 - myage;
+document.getElementById("userage").innerHTML = myage;
+document.getElementById("year").innerHTML = yearborn;
+}
+
+subtotal = mytacos * 2.49;
+document.getElementById("tacosubtotal").innerHTML = subtotal.toFixed(2);
+
+mytax = (subtotal * .0625);
+document.getElementById("tax").innerHTML = mytax.toFixed(2);
+
+mytotal = subtotal + mytax;
+document.getElementById("tacototal").innerHTML = "$" + mytotal.toFixed(2);
+
+
+
+
+
+return false; // required to not refresh the page; just leave this here
+}
+</script>
+
+</body>
+</html>
+

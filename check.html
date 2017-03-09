@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form  id="form1" />
+
+<p>Favorite genres</p>
+<input type="checkbox" name="genre" class="age"  value="pop" />pop
+<input type="checkbox" name="genre"  class="age" value="rock" />rock 
+<input type="checkbox" name="genre"  class="age" value="country" />country
+
+<input type="submit" value="Submit">
+</form>
+
+<p>Acts you might like: </p>
+<p id="answer"></p>
+<p id="answer2"></p>
+
+<script>    
+document.getElementById("form1").onsubmit=function() {
+
+//this resets what is in the DOM
+document.getElementById("answer").innerHTML = "";
+document.getElementById("answer2").innerHTML = "";
+
+//grabs values from checkbox and puts in an array
+checkboxes = document.querySelectorAll("input[name='genre']:checked");
+
+//genre arrays to hold answers 
+pop = ["Quiet Company", "Skyrocket", "Fastball"];
+rock = ["Spoon", "Rocketboys", "White Denim"];
+country = ["Willie Nelson", "Joe Ely", "Hayes Carll"];
+
+
+//loop that goes through each element of the checkbox array
+for( i=0; i < checkboxes.length; i++ ) {
+  document.getElementById("answer").innerHTML += checkboxes[i].value + ", ";
+  
+  //if statements that check value and add correct genre array to DOM
+  if(checkboxes[i].value == "pop") {
+  document.getElementById("answer2").innerHTML += pop + "<br>";
+  }
+  if(checkboxes[i].value == "rock") {
+  document.getElementById("answer2").innerHTML += rock + "<br>";
+  }
+  if(checkboxes[i].value == "country") {
+  document.getElementById("answer2").innerHTML += country  + "<br>";
+  }
+}	   
+	   return false; // required to not refresh the page; just leave this here
+	   }// end the submit function
+	
+</script>
+</body>
+</html>
+

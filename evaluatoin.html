@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Instructor Evaluation</title>
+</head>
+<body>
+<form  id="form1" action=" ">
+<p>The instructor was prepared for class.</p>
+<input type="radio" name="prepared" value="1" />1<br />
+<input type="radio" name="prepared" value="2" />2<br />
+<input type="radio" name="prepared" value="3" />3<br />
+<input type="radio" name="prepared" value="4" />4<br />
+<input type="radio" name="prepared" value="5" />5<br />
+
+<p>The topic was interesting to me.</p>
+<input type="radio" name="interesting" value="1" />1<br />
+<input type="radio" name="interesting" value="2" />2<br />
+<input type="radio" name="interesting" value="3" />3<br />
+<input type="radio" name="interesting" value="4" />4<br />
+<input type="radio" name="interesting" value="5" />5<br />
+
+
+<input type="submit" value="Submit">
+</form>
+
+<p>Question 1 Answer: <span id="quest1"></span></p>
+<p>Question 2 Answer: <span id="quest2"></span></p>
+<p>Score Total: <span id="total"></span></p>
+<p>Score Average: <span id="average"></span></p>
+<p>Average above 3 (Yes or No): <span id="above3"><span></p>
+<p>Which measures scored 5?: <span id="score5"><span></p>
+
+<script>
+//this is the generic function that submits the form. Name of form above must be the same as id below
+document.getElementById("form1").onsubmit=function() {
+
+//code the rest of your script here
+
+document.getElementById("score5").innerHTML = "";
+
+q1 = parseInt(document.querySelector('input[name = "prepared"]:checked').value);
+document.getElementById("quest1").innerHTML = q1;
+
+q2 = parseInt(document.querySelector('input[name = "interesting"]:checked').value);
+document.getElementById("quest2").innerHTML = q2;
+
+scores = [];
+
+scores.push(q1);
+scores.push(q2);
+
+
+sum = q1 + q2;
+document.getElementById("total").innerHTML = sum;
+
+avg = sum/2;
+document.getElementById("average").innerHTML = avg;
+
+if(avg >=3) {
+document.getElementById("above3").innerHTML = "Yes";
+}
+else {
+document.getElementById("above3").innerHTML = "No";
+}
+
+for(i=0; i<scores.length; i++) {
+if(scores[i] == 5) {
+document.getElementById("score5").innerHTML += (i + 1) + ", ";
+
+}
+}
+
+
+
+return false; // required to not refresh the page; just leave this here
+}
+</script>
+
+</body>
+</html>
